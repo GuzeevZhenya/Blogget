@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./Auth.module.css";
-import login from "./img/login.svg";
+import PropTypes from 'prop-types';
 
 export const Auth = ({ auth }) => {
   return (
@@ -25,4 +25,8 @@ export const Auth = ({ auth }) => {
       )}
     </button>
   );
+};
+
+Auth.propTypes = {
+  auth: PropTypes.bool,
 };
