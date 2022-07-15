@@ -1,9 +1,9 @@
-import React from "react";
-import style from "./Layout.module.css";
+import React from 'react';
+import style from './Layout.module.css';
 import PropTypes from 'prop-types';
 
-export const Layout = ({ children }) => {
-  return <div className={style.container}>{children}</div>;
+export const Layout = ({children}) => {
+  <div className={style.container}>{children}</div>;
 };
 
 Layout.propTypes = {
@@ -11,5 +11,5 @@ Layout.propTypes = {
     PropTypes.string,
     PropTypes.object,
     PropTypes.array,
-  ])
+  ]),
 };

@@ -1,12 +1,9 @@
-import React from "react";
-import style from "./Main.module.css";
-import Layout from "../Layout";
-
+import React from 'react';
+import style from './Main.module.css';
+import Layout from '../Layout';
 
 export const Main = (props) => {
-  return (
-    <main className={style.main}>
-      <Layout>Главная страница</Layout>
-    </main>
-  );
+  <main className={style.main}>
+    <Layout>Главная страница</Layout>
+  </main>;
 };
