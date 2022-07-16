@@ -6,7 +6,7 @@ import Search from './Search';
 import Auth from './Auth';
 import Heading from './Heading';
 
-export const Header = () => {
+export const Header = () => (
   <header className={style.header}>
     <Layout>
       <div className={style.gridContainer}>
@@ -16,5 +16,5 @@ export const Header = () => {
         <Auth auth={false} />
       </div>
     </Layout>
-  </header>;
-};
+  </header>
+);
