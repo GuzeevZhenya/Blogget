@@ -9,9 +9,8 @@ import {PostContent} from './PostContent/PostContent';
 import {PostPhoto} from './PostPhoto/PostPhoto';
 import {DeleteButton} from './DeleteButton/DeleteButton';
 
-export const Post = ({postData}) => {
-  const {title, author, ups, date} = postData;
-  console.log(ups, date);
+export const Post = ({post}) => {
+  const {title, author, ups, date} = post;
   return (
     <li className={style.post}>
       <PostPhoto title={title}/>
@@ -24,5 +23,5 @@ export const Post = ({postData}) => {
 };
 
 Post.propTypes = {
-  postData: PropTypes.object,
+  post: PropTypes.object,
 };

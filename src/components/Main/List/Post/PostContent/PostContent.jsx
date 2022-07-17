@@ -1,19 +1,27 @@
 import React from 'react';
 import style from './PostContent.module.css';
 import PropTypes from 'prop-types';
+import {Text} from '../../../../../UI/Text';
 
-export const PostContent = ({title, author}) => {
-  console.log(title, author);
-  return (
-    <div className={style.content}>
-      <h2 className={style.title}>
-        <a className={style.linkPost}>{title}</a>
-      </h2>
-      <a className={style.linkAuthor}>{author}</a>
-    </div>
-  );
-};
-
+export const PostContent = ({title, author}) => (
+  <div className={style.content}>
+    <Text As='h2' className={style.title}>
+      <Text As='a' size={18} tsize={24} className={style.linkPost}>
+        {title}
+      </Text>
+    </Text>
+    <Text
+      As='a'
+      size={12}
+      tsize={14}
+      color='orange'
+      className={style.linkAuthor}
+      href= '#autor'
+    >
+      {author}
+    </Text>
+  </div>
+);
 
 PostContent.propTypes = {
   title: PropTypes.string,
