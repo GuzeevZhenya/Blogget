@@ -6,7 +6,13 @@ import {Text} from '../../../../../UI/Text';
 export const PostContent = ({title, author}) => (
   <div className={style.content}>
     <Text As='h2' className={style.title}>
-      <Text As='a' size={18} tsize={24} className={style.linkPost}>
+      <Text
+        As='a'
+        size={18}
+        tsize={24}
+        href='#autor'
+        className={style.linkPost}
+      >
         {title}
       </Text>
     </Text>
@@ -16,7 +22,7 @@ export const PostContent = ({title, author}) => (
       tsize={14}
       color='orange'
       className={style.linkAuthor}
-      href= '#autor'
+      href='#autor'
     >
       {author}
     </Text>

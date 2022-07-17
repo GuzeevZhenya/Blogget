@@ -8,7 +8,7 @@ export const Auth = ({auth}) => (
     {auth ? (
       auth
     ) : (
-     <Login width={30} height={30} />
+     <Login className={style.svg}/>
     )}
   </button>
 );

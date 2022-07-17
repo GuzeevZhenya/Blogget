@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {Text} from '../../../UI/Text';
 
 export const Heading = ({title}) => (
-  <Text as='h1' center size={22} tsize={26} className={style.heading}>
+  <Text As='h1' center size={22} tsize={26} className={style.heading}>
     {title}
   </Text>
 );
