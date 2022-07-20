@@ -17,8 +17,9 @@
 
 .logout {
   position: absolute;
-  top: 100%;
-  right: 0;
+  top: 110%;
+  right: 50%;
+  transform: translateX(50%);
   background-color: var(--orange);
   border: 0;
   color: var(--white);
@@ -26,6 +27,11 @@
   border-radius: 6px;
   font-size: 14px;
   cursor: pointer;
+  display: none;
+}
+
+.logout_active {
+  display: block;
 }
 
 .img {

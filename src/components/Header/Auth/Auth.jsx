@@ -8,7 +8,7 @@ import {URL} from '../../../api/const';
 
 export const Auth = ({token, delToken}) => {
   const [auth, setAuth] = useState({});
-  const [isActiveButton, setIsActiveButton] = useState(false);
+  const [isActiveButton, setIsActiveButton] = useState(true);
 
   const handleLogoutBtn = () => {
     setIsActiveButton(!isActiveButton);
@@ -41,27 +41,31 @@ export const Auth = ({token, delToken}) => {
       });
   }, [token]);
 
+  console.log(auth.name);
+
   return (
     <div className={style.container}>
-      {auth ? (
-        <button className={style.btn} onClick={() => handleLogoutBtn()}>
-          <img
-            className={style.img}
-            src={auth.img}
-            title={auth.name}
-            alt={auth.name}
-          />
-        </button>
+      {auth.name ? (
+          <button className={style.btn} onClick={() => handleLogoutBtn()}>
+            <img
+              className={style.img}
+              src={auth.img}
+              title={auth.name}
+              alt={auth.name}
+            />
+          </button>
       ) : (
         <Text className={style.authLink} As='a' href={urlAuth}>
           <LoginIcon className={style.svg} />
         </Text>
       )}
-      {isActiveButton && (
-        <button className={style.logout} onClick={() => logOut()}>
-          Выйти
-        </button>
-      )}
+      <button
+        className={isActiveButton ? style.logout : ` 
+        ${style.logout} ${style.logout_active}`}
+        onClick={() => logOut()}
+      >
+        Выйти
+      </button>
     </div>
   );
 };
