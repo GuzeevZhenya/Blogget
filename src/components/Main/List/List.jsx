@@ -10,7 +10,7 @@ export const List = () => {
   return (
     <ul className={style.list}>
       {posts.map((post, index) => (
-        <Post key={post.id} post={post} />
+        <Post key={post.data.id} post={post} />
       ))}
     </ul>
   );
