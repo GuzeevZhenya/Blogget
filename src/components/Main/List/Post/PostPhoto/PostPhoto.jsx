@@ -4,11 +4,18 @@ import notphoto from '../img/notphoto.jpg';
 
 import PropTypes from 'prop-types';
 
-export const PostPhoto = ({title, img}) => (
-  <img className={style.img} src={notphoto} alt={title} />
-);
+export const PostPhoto = ({title, thumbnail}) => {
+  console.log();
+  return (
+    <img
+      className={style.img}
+      src={!/(jpg)/g.test(thumbnail) ? notphoto : thumbnail}
+      alt={title}
+    />
+  );
+};
 
 PostPhoto.propTypes = {
   title: PropTypes.string,
-  img: PropTypes.string,
+  thumbnail: PropTypes.string,
 };

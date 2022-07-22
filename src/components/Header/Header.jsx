@@ -1,4 +1,3 @@
-import React from 'react';
 import style from './Header.module.css';
 import Layout from '../Layout';
 import Logo from './Logo';
@@ -13,7 +12,7 @@ export const Header = () => (
         <Logo />
         <Heading title='Главная' />
         <Search />
-        <Auth auth={false} />
+        <Auth />
       </div>
     </Layout>
   </header>
