@@ -1,47 +1,29 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import style from './Auth.module.css';
 import PropTypes from 'prop-types';
 import {ReactComponent as LoginIcon} from './img/login.svg';
 import {urlAuth} from '../../../api/auth';
 import {Text} from '../../../UI/Text';
-import {URL} from '../../../api/const';
+import {tokenContext} from '../../../context/tokenContext';
+import {authContext} from '../../../context/authContext';
 
-export const Auth = ({token, delToken}) => {
-  const [auth, setAuth] = useState({});
+
+export const Auth = () => {
   const [isActiveButton, setIsActiveButton] = useState(true);
+  const {delToken} = useContext(tokenContext);
+  const {auth, clearAuth} = useContext(authContext);
+
 
   const handleLogoutBtn = () => {
     setIsActiveButton(!isActiveButton);
   };
 
   const logOut = () => {
-    setAuth({});
+    clearAuth();
     delToken();
     handleLogoutBtn();
   };
 
-  useEffect(() => {
-    if (!token) return;
-    fetch(`${URL}/api/v1/me`, {
-      headers: {
-        Authorization: `bearer ${token}`,
-      },
-    })
-      .then(response => {
-        if (response.status === 401) localStorage.removeItem('bearer');
-        return response.json();
-      })
-      .then(({name, icon_img: iconImg}) => {
-        const img = iconImg.replace(/\?.*$/, '');
-        setAuth({name, img});
-      })
-      .catch((err) => {
-        console.log(err);
-        setAuth({});
-      });
-  }, [token]);
-
-  console.log(auth.name);
 
   return (
     <div className={style.container}>
