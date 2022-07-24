@@ -10,14 +10,30 @@ import {PostPhoto} from './PostPhoto/PostPhoto';
 import {DeleteButton} from './DeleteButton/DeleteButton';
 
 export const Post = ({post}) => {
-  const {title, author, ups, date} = post;
+  const {
+    title,
+    author,
+    ups,
+    created,
+    url,
+    thumbnail,
+    selfText: markdown,
+    id,
+  } = post.data;
+
   return (
     <li className={style.post}>
-      <PostPhoto title={title}/>
-      <PostContent title={title} author={author}/>
-      <PostRaiting ups={ups}/>
-      <PostTime date={date}/>
-      <DeleteButton/>
+      <PostPhoto title={title} thumbnail={thumbnail} />
+      <PostContent
+        title={title}
+        markdown={markdown}
+        author={author}
+        url={url}
+        id={id}
+      />
+      <PostRaiting ups={ups} />
+      <PostTime date={created} />
+      <DeleteButton />
     </li>
   );
 };
