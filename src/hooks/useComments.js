@@ -5,7 +5,6 @@ import {postsContext} from '../context/postContext';
 
 export const useComments = (id) => {
   const [comments, setComments] = useState([]);
-  console.log(comments);
   const [postData, setPostData] = useState({});
   const {token} = useContext(tokenContext);
   const {posts} = useContext(postsContext);

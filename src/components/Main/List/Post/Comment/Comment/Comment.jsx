@@ -2,6 +2,7 @@ import style from './Comment.module.css';
 import {Text} from '../../../../../../UI/Text';
 import PropTypes from 'prop-types';
 import {formatDate} from '../../../../../../utils/formatDate';
+import Markdown from 'markdown-to-jsx';
 
 export const Comment = ({item}) => {
   const {author, created, body} = item;
@@ -13,15 +14,19 @@ export const Comment = ({item}) => {
         className={style.author}
         size={18}
         tsize={22}>
-        {author}
+        <Markdown>
+          {author}
+        </Markdown>
       </Text>
 
       <Text
-        As='p'
+        As='div'
         className={style.comment}
         size={14}
         tsize={18}>
-        {body}
+        <Markdown>
+          {body}
+        </Markdown>
       </Text>
 
       <Text
