@@ -7,16 +7,22 @@ import {FormComment} from '../Main/List/Post/FormComments/FormComments';
 import {Comments} from '../Main/List/Post/Comments/Comments';
 // import Markdown from 'markdown-to-jsx';
 import ReactDOM from 'react-dom';
+import {Text} from '../../UI/Text';
 
 export const Modal = ({title, author, mardown, closeModal, id}) => {
-  const [comments] = useComments(id);
+  const [comments, postData] = useComments(id);
   const overlayRef = useRef(null);
+  console.log(postData);
 
   const handleClick = e => {
     const target = e.target;
     if (target === overlayRef.current) {
       closeModal();
     }
+  };
+
+  const handleClose = e => {
+    closeModal();
   };
 
   const handlePress = e => {
@@ -37,23 +43,17 @@ export const Modal = ({title, author, mardown, closeModal, id}) => {
   return ReactDOM.createPortal(
     <div className={style.overlay} ref={overlayRef}>
       <div className={style.modal}>
-        <h2 className={style.title}>{title}</h2>
+        <h2 className={style.title}>{postData.title}</h2>
         <div className={style.content}>
-          {/* <Markdown
-            options={{
-              overrides: {
-                a: {
-                  props: {
-                    target: '_blank',
-                  },
-                },
-              },
-            }}
-          >
-            {mardown}
-          </Markdown> */}
+          {postData.selftext ? (
+            postData.selftext
+          ) : (
+            'У этого поста нет текста'
+          )}
         </div>
-        <p className={style.author}>{author}</p>
+        <Text as='p' className={style.author}>
+          Автор: {postData.author}
+        </Text>
         <FormComment/>
 
         {comments.length ? (
@@ -62,7 +62,7 @@ export const Modal = ({title, author, mardown, closeModal, id}) => {
           <p>Загрузка...</p>
         )}
 
-        <button className={style.close}>
+        <button className={style.close} onClick={() => handleClose()}>
           <Close />
         </button>
       </div>

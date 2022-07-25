@@ -21,6 +21,7 @@ export const Post = ({post}) => {
     id,
   } = post.data;
 
+
   return (
     <li className={style.post}>
       <PostPhoto title={title} thumbnail={thumbnail} />

@@ -5,6 +5,7 @@ import {formatDate} from '../../../../../../utils/formatDate';
 
 export const Comment = ({item}) => {
   const {author, created, body} = item;
+  console.log(item);
   return (
     <li className={style.item}>
       <Text
