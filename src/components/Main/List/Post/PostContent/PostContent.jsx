@@ -1,35 +1,47 @@
-import React from 'react';
+import React, {useState} from 'react';
 import style from './PostContent.module.css';
 import PropTypes from 'prop-types';
 import {Text} from '../../../../../UI/Text';
+import Modal from '../../../../Modal';
 
-export const PostContent = ({title, author}) => (
-  <div className={style.content}>
-    <Text As='h2' className={style.title}>
+
+export const PostContent = ({title, author, markdown, id}) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  return (
+    <div className={style.content}>
+      <Text As='h2' className={style.title}>
+        <Text
+          As='a'
+          size={18}
+          tsize={24}
+          className={style.linkPost}
+          onClick={() => setIsModalOpen(true)}
+        >
+          {title}
+        </Text>
+      </Text>
       <Text
         As='a'
-        size={18}
-        tsize={24}
-        href='#autor'
-        className={style.linkPost}
+        color='orange'
+        size={12}
+        tsize={14}
+        className={style.linkAuthor}
+        href='#author'
       >
-        {title}
+        {author}
       </Text>
-    </Text>
-    <Text
-      As='a'
-      size={12}
-      tsize={14}
-      color='orange'
-      className={style.linkAuthor}
-      href='#autor'
-    >
-      {author}
-    </Text>
-  </div>
-);
+      {isModalOpen && <Modal id={id}
+        closeModal={() => setIsModalOpen(false)}
+      />
+      }
+    </div>
+  );
+};
 
 PostContent.propTypes = {
   title: PropTypes.string,
   author: PropTypes.string,
+  markdown: PropTypes.string,
+  id: PropTypes.string
 };
