@@ -4,15 +4,17 @@ import PropTypes from 'prop-types';
 import {ReactComponent as LoginIcon} from './img/login.svg';
 import {urlAuth} from '../../../api/auth';
 import {Text} from '../../../UI/Text';
-import {tokenContext} from '../../../context/tokenContext';
 import {authContext} from '../../../context/authContext';
+
+import {useDispatch} from 'react-redux';
+import {deleteToken} from '../../../store';
 
 
 export const Auth = () => {
   const [isActiveButton, setIsActiveButton] = useState(true);
-  const {delToken} = useContext(tokenContext);
   const {auth, clearAuth} = useContext(authContext);
 
+  const dispatch = useDispatch();
 
   const handleLogoutBtn = () => {
     setIsActiveButton(!isActiveButton);
@@ -20,7 +22,7 @@ export const Auth = () => {
 
   const logOut = () => {
     clearAuth();
-    delToken();
+    dispatch(deleteToken());
     handleLogoutBtn();
   };
 

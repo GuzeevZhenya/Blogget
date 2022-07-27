@@ -1,35 +1,44 @@
 import style from './FormComments.module.css';
-import {useRef, useState} from 'react';
+import {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux/es/exports';
+import {updateComment} from '../../../../../store';
 
 export const FormComment = () => {
-  const inputRef = useRef(null);
-  // const focusRef = useRef(null);
   const [isTextArea, setIsTextArea] = useState(false);
+
+  const dispatch = useDispatch();
+  const value = useSelector(state => state.comment);
+  console.log(value);
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(inputRef.current.value);
   };
 
   const handleClick = e => {
     setIsTextArea(true);
     setTimeout(() => {
-      inputRef.current.focus();
+
     }, 0);
+  };
+
+  const handleChange = e => {
+    dispatch(updateComment(e.target.value));
   };
 
 
   return (
     <>
       {!isTextArea ? (
-        <button
-          className={style.btn}
-          onClick={handleClick}>
-          Написать комментарий
-        </button>
+          <button
+            className={style.btn}
+            onClick={handleClick}>
+            Написать комментарий
+          </button>
       ) : (
         <form className={style.form} onSubmit={handleSubmit}>
-          <textarea className={style.textarea} ref={inputRef}/>
+          {/* <h2>{auth.name}</h2> */}
+          <textarea className={style.textarea} value={value}
+            onChange={handleChange}/>
           <button type='submit'
             className={style.btn}
           >

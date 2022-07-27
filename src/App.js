@@ -1,21 +1,18 @@
 import React from 'react';
 import Header from './components/Header';
 import Main from './components/Main';
-import {TokenContextProvider} from './context/tokenContext';
+import {Provider} from 'react-redux';
 import {AuthContextProvider} from './context/authContext';
-import {CommentsContextProvider} from './context/commentsContext';
+import {store} from './store';
 
 function App() {
   return (
-    <TokenContextProvider>
+    <Provider store={store}>
       <AuthContextProvider>
-        <CommentsContextProvider>
-          {' '}
-          <Header />
-          <Main />
-        </CommentsContextProvider>
+        <Header />
+        <Main />
       </AuthContextProvider>
-    </TokenContextProvider>
+    </Provider>
   );
 }
 
