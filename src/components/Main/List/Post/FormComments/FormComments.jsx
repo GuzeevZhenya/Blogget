@@ -1,13 +1,13 @@
 import style from './FormComments.module.css';
 import {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux/es/exports';
-import {updateComment} from '../../../../../store';
+import {updateComment} from '../../../../../store/commentReducer';
 
 export const FormComment = () => {
   const [isTextArea, setIsTextArea] = useState(false);
 
   const dispatch = useDispatch();
-  const value = useSelector(state => state.comment);
+  const value = useSelector(state => state.commentReducer.comment);
   console.log(value);
 
   const handleSubmit = e => {
