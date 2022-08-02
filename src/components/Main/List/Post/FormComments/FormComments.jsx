@@ -8,7 +8,6 @@ export const FormComment = () => {
 
   const dispatch = useDispatch();
   const value = useSelector(state => state.commentReducer.comment);
-  console.log(value);
 
   const handleSubmit = e => {
     e.preventDefault();
