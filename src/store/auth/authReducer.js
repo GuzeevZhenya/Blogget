@@ -2,7 +2,7 @@ import {
   AUTH_LOGOUT,
   AUTH_REQUEST,
   AUTH_REQUEST_ERROR,
-  AUTH_REQUEST_SUCCESS,
+  AUTH_REQUEST_SUCCESS
 } from './action';
 
 const initialState = {
@@ -17,6 +17,14 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+        error: '',
+      };
+    case AUTH_REQUEST_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        data: action.data,
+        error: '',
       };
     case AUTH_REQUEST_ERROR:
       return {
@@ -24,19 +32,11 @@ export const authReducer = (state = initialState, action) => {
         loading: false,
         error: action.error,
       };
-    case AUTH_REQUEST_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        error: '',
-        data: action.data,
-      };
     case AUTH_LOGOUT:
       return {
         ...state,
         data: {},
       };
-
     default:
       return state;
   }

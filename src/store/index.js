@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
   tokenReducer,
   commentReducer,
   postsReducer,
-  auth: authReducer,
+  authReducer,
   commentsReducer,
 });
 

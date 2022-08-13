@@ -1,31 +1,31 @@
 export const AUTH_REQUEST = 'AUTH_REQUEST';
-export const AUTH_REQUEST_ERROR = 'AUTH_REQUEST_ERROR';
 export const AUTH_REQUEST_SUCCESS = 'AUTH_REQUEST_SUCCESS';
+export const AUTH_REQUEST_ERROR = 'AUTH_REQUEST_ERROR';
 export const AUTH_LOGOUT = 'AUTH_LOGOUT';
-import {deleteToken} from '../../store/tokenReducer';
-import {URL} from '../../api/const';
 import axios from 'axios';
+import {URL} from '../../api/const';
+import {deleteToken} from '../tokenReducer';
 
 export const authRequest = () => ({
-  type: AUTH_REQUEST,
+  type: 'AUTH_REQUEST'
 });
 
 export const authRequestSuccess = (data) => ({
-  type: AUTH_REQUEST_SUCCESS,
+  type: 'AUTH_REQUEST_SUCCESS',
   data,
 });
 
 export const authRequestError = (error) => ({
-  type: AUTH_REQUEST_ERROR,
+  type: 'AUTH_REQUEST_ERROR',
   error,
 });
 
-export const authLogout = (error) => ({
+export const authLogout = () => ({
   type: AUTH_LOGOUT,
 });
 
 export const authRequestAsync = () => (dispatch, getState) => {
-  const token = getState().token.token;
+  const token = getState().tokenReducer.token;
   if (!token) return;
   dispatch(authRequest());
   axios(`${URL}/api/v1/me`, {
@@ -41,6 +41,6 @@ export const authRequestAsync = () => (dispatch, getState) => {
     .catch((err) => {
       console.error(err);
       dispatch(deleteToken());
-      dispatch(authRequestError(err.message));
+      dispatch(authRequestError(err.toString()));
     });
 };

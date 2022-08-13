@@ -15,6 +15,7 @@ export const Auth = () => {
   const [isActiveButton, setIsActiveButton] = useState(true);
   const [auth, loading, clearAuth] = useAuth();
 
+
   const dispatch = useDispatch();
 
   const handleLogoutBtn = () => {
@@ -30,7 +31,9 @@ export const Auth = () => {
 
   return (
     <div className={style.container}>
-      {loading ? (<Preloader/>) : auth.name ? (
+      {loading ? (
+      <Preloader color='#cc6633' size='30px' />
+      ) : auth.name ? (
           <button className={style.btn} onClick={() => handleLogoutBtn()}>
             <img
               className={style.img}
