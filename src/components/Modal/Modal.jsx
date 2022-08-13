@@ -2,15 +2,14 @@ import React, {useRef, useEffect} from 'react';
 import style from './Modal.module.css';
 import {ReactComponent as Close} from './img/close.svg';
 import PropTypes from 'prop-types';
-import {useComments} from '../../hooks/useComments';
+import {useCommentsData} from '../../hooks/useComments';
 import {FormComment} from '../Main/List/Post/FormComments/FormComments';
 import {Comments} from '../Main/List/Post/Comments/Comments';
-// import Markdown from 'markdown-to-jsx';
 import ReactDOM from 'react-dom';
 import {Text} from '../../UI/Text';
 
 export const Modal = ({title, author, mardown, closeModal, id}) => {
-  const [comments, postData] = useComments(id);
+  const [comments, postData] = useCommentsData(id);
   const overlayRef = useRef(null);
   console.log(postData);
 

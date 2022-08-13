@@ -2,6 +2,7 @@ import style from './FormComments.module.css';
 import {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux/es/exports';
 import {updateComment} from '../../../../../store/commentReducer';
+import {useAuth} from '../../../../../hooks/useAuth';
 
 export const FormComment = () => {
   const [isTextArea, setIsTextArea] = useState(false);
@@ -9,7 +10,7 @@ export const FormComment = () => {
   const dispatch = useDispatch();
   const value = useSelector(state => state.commentReducer.comment);
   console.log(value);
-
+  const [auth] = useAuth();
   const handleSubmit = e => {
     e.preventDefault();
   };
@@ -36,7 +37,7 @@ export const FormComment = () => {
           </button>
       ) : (
         <form className={style.form} onSubmit={handleSubmit}>
-          {/* <h2>{auth.name}</h2> */}
+          {<h2>{auth.name}</h2>}
           <textarea className={style.textarea} value={value}
             onChange={handleChange}/>
           <button type='submit'

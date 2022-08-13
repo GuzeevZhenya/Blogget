@@ -9,7 +9,7 @@ import {PostContent} from './PostContent/PostContent';
 import {PostPhoto} from './PostPhoto/PostPhoto';
 import {DeleteButton} from './DeleteButton/DeleteButton';
 
-export const Post = ({post}) => {
+export const Post = (prosp) => {
   const {
     title,
     author,
@@ -19,7 +19,7 @@ export const Post = ({post}) => {
     thumbnail,
     selfText: markdown,
     id,
-  } = post.data;
+  } = prosp.postData;
 
 
   return (

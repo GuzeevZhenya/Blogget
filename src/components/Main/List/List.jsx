@@ -1,16 +1,21 @@
-import React, {useContext} from 'react';
-// import {useBestPosts} from '../../../hooks/useBestPosts';
-import {postsContext} from '../../../context/postContext';
+import {useBestPosts} from '../../../hooks/useBestPosts';
+import {Preloader} from '../../Header/Auth/AuthLoader/AuthLoader';
 import style from './List.module.css';
 import Post from './Post';
 
 export const List = () => {
-  const {posts} = useContext(postsContext);
+  const [posts, loading] = useBestPosts();
   return (
-    <ul className={style.list}>
-      {posts.map((post, index) => (
-        <Post key={post.data.id} post={post} />
-      ))}
-    </ul>
+    <>
+      {loading ? (
+        <Preloader color='#000' size='400px' />
+      ) : (
+        <ul className={style.list}>
+          {posts.map((postData) => (
+            <Post key={postData.id} postData={postData} />
+          ))}
+        </ul>
+      )}
+    </>
   );
 };
