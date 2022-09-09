@@ -1,25 +1,24 @@
-import React, {useState} from 'react';
 import style from './PostContent.module.css';
 import PropTypes from 'prop-types';
 import {Text} from '../../../../../UI/Text';
-import Modal from '../../../../Modal';
+import {Link, useParams} from 'react-router-dom';
 
 
 export const PostContent = ({title, author, markdown, id}) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const {page} = useParams();
 
   return (
     <div className={style.content}>
       <Text As='h2' className={style.title}>
-        <Text
-          As='a'
-          size={18}
-          tsize={24}
-          className={style.linkPost}
-          onClick={() => setIsModalOpen(true)}
-        >
-          {title}
-        </Text>
+        <Link className={style.linkPost} to={`/category/${page}/post/${id}`}>
+          <Text
+            size={18}
+            tsize={24}
+            className={style.linkPost}
+          >
+            {title}
+          </Text>
+        </Link>
       </Text>
       <Text
         As='a'
@@ -31,10 +30,6 @@ export const PostContent = ({title, author, markdown, id}) => {
       >
         {author}
       </Text>
-      {isModalOpen && <Modal id={id}
-        closeModal={() => setIsModalOpen(false)}
-      />
-      }
     </div>
   );
 };

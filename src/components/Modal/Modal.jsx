@@ -7,8 +7,11 @@ import {FormComment} from '../Main/List/Post/FormComments/FormComments';
 import {Comments} from '../Main/List/Post/Comments/Comments';
 import ReactDOM from 'react-dom';
 import {Text} from '../../UI/Text';
+import {useParams, useNavigate} from 'react-router-dom';
 
-export const Modal = ({title, author, mardown, closeModal, id}) => {
+export const Modal = () => {
+  const {id, page} = useParams();
+  const navigate = useNavigate();
   const [comments, postData] = useCommentsData(id);
   const overlayRef = useRef(null);
   console.log(postData);
@@ -16,17 +19,14 @@ export const Modal = ({title, author, mardown, closeModal, id}) => {
   const handleClick = e => {
     const target = e.target;
     if (target === overlayRef.current) {
-      closeModal();
+      navigate(`/category/${page}`);
     }
   };
 
-  const handleClose = e => {
-    closeModal();
-  };
 
   const handlePress = e => {
     if (e.keyCode === 27) {
-      closeModal();
+      navigate(`/category/${page}`);
     }
   };
 
@@ -61,7 +61,10 @@ export const Modal = ({title, author, mardown, closeModal, id}) => {
           <p>Загрузка...</p>
         )}
 
-        <button className={style.close} onClick={() => handleClose()}>
+        <button className={style.close}
+          onClick={() => {
+            navigate(`/category/&{page}`);
+          }}>
           <Close />
         </button>
       </div>

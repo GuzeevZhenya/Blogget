@@ -19,7 +19,8 @@ export const Post = (prosp) => {
     thumbnail,
     selfText: markdown,
     id,
-  } = prosp.postData;
+  } = prosp.postData.data;
+  console.log(prosp.postData);
 
 
   return (

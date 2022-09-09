@@ -6,7 +6,6 @@ import Markdown from 'markdown-to-jsx';
 
 export const Comment = ({item}) => {
   const {author, created, body} = item;
-  console.log(item);
   return (
     <li className={style.item}>
       <Text
