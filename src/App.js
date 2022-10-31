@@ -1,12 +1,18 @@
+
+import React from 'react';
 import Header from './components/Header';
 import Main from './components/Main';
+import {TokenContextProvider} from './context/tokenContext';
+import {AuthContextProvider} from './context/authContext';
 
 function App() {
   return (
-    <>
-      <Header />
-      <Main />
-    </>
+    <TokenContextProvider>
+      <AuthContextProvider>
+        <Header />
+        <Main />
+      </AuthContextProvider>
+    </TokenContextProvider>
   );
 }
 
